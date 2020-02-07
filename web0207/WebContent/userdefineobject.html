@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>사용자 정의 객체</title>
+<script>
+	//속성이름은 문자열로 만들어져야 하기 때문에 ""를 생략해도 됩니다.
+	//자바스크립트나 파이썬에서는 함수 안에서 자신의 속성을 호출할 때 this를 붙여야 합니다.
+	//파이썬에서는 this 라는 이름을 개발자가 정할 수 있습니다. 관습적으로 self 
+	var obj = {name:"박문석", age:50, 
+	disp:function(){document.write(this.name + ":" + this.age);}}
+	
+	obj.disp();//함수 호출
+	document.write("<br/>" + obj.name + ":" + obj["age"]);
+	//name 은 존재하는 속성이라서 true address는 없는 속성이라서 false
+	document.write("<br/>" + ("name" in obj));
+	document.write("<br/>" + ("address" in obj));
+	
+	//생성자 함수 - this를 이용해서 name, age, disp 라는 속성을 생성
+	var Person = function(name, age){
+		this.name = name;
+		this.age = age;
+		this.disp = function(){
+			document.write(this.name + ":" + this.age);
+		}
+	};
+	//자바스크립트는 클래스의 개념이 없어서 객체 지향 언어라는 표현을 사용하지 않고
+	//객체 기반 언어라는 표현을 사용합니다.
+	//최근에는 자바스크립트에 객체 지향의 개념을 도입한 TypeScript가 등장했습니다.
+	//생성자를 이용한 객체 생성
+	var person1 = new Person("이순신", 80);
+	person1.disp();
+	//속성 추가
+	person1.address = "서울시 양천구 목동";
+	//속성 제거
+	delete(person1.age);
+	person1.disp();
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
